@@ -1,0 +1,205 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Wedding of Naldi & Elsi</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Georgia, serif;
+      background: #f8f5ef;
+      color: #51463c;
+      text-align: center;
+    }
+
+    .cover {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 30px 20px;
+      background: linear-gradient(
+        rgba(248,245,239,.78),
+        rgba(248,245,239,.88)
+      ), url('https://images.unsplash.com/photo-1519741497674-611481863552?w=1200');
+      background-size: cover;
+      background-position: center;
+    }
+
+    .small {
+      letter-spacing: 5px;
+      font-size: 12px;
+      margin-bottom: 30px;
+    }
+
+    h1 {
+      font-size: clamp(42px, 10vw, 65px);
+      font-weight: normal;
+      font-style: italic;
+      line-height: 1.3;
+    }
+
+    .amp {
+      font-size: 35px;
+      margin: 12px;
+      color: #ad8b65;
+    }
+
+    .date {
+      letter-spacing: 4px;
+      margin: 25px 0;
+      font-size: 13px;
+    }
+
+    .button {
+      background: #806b54;
+      color: white;
+      border: none;
+      padding: 15px 30px;
+      border-radius: 30px;
+      font-size: 13px;
+      letter-spacing: 1px;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+
+    .content {
+      padding: 80px 20px;
+    }
+
+    .content h2 {
+      font-size: 32px;
+      font-weight: normal;
+      font-style: italic;
+      margin: 20px 0;
+    }
+
+    .content p {
+      line-height: 2;
+      font-size: 15px;
+    }
+
+    .countdown {
+      display: flex;
+      justify-content: center;
+      gap: 18px;
+      margin-top: 30px;
+    }
+
+    .countdown div {
+      font-size: 12px;
+    }
+
+    .countdown strong {
+      display: block;
+      font-size: 28px;
+      font-weight: normal;
+    }
+
+    footer {
+      padding: 30px;
+      background: #eee7dc;
+      font-size: 13px;
+    }
+
+    #invitation {
+      display: none;
+    }
+  </style>
+</head>
+
+<body>
+
+  <section class="cover">
+    <p class="small">THE WEDDING OF</p>
+
+    <h1>Naldi</h1>
+    <div class="amp">&</div>
+    <h1>Elsi</h1>
+
+    <p class="date">16 FEBRUARY 2028</p>
+
+    <p>We invite you to celebrate our special day</p>
+
+    <button class="button" onclick="openInvitation()">
+      BUKA UNDANGAN
+    </button>
+  </section>
+
+  <main id="invitation">
+
+    <section class="content">
+      <p>WITH LOVE AND BLESSING</p>
+      <h2>Naldi & Elsi</h2>
+      <p>
+        Dua hati, satu tujuan, dan perjalanan cinta
+        yang akan terus berjalan bersama.
+      </p>
+    </section>
+
+    <section class="content">
+      <p>SAVE THE DATE</p>
+      <h2>16 Februari 2028</h2>
+
+      <div class="countdown">
+        <div><strong id="days">0</strong>Hari</div>
+        <div><strong id="hours">0</strong>Jam</div>
+        <div><strong id="minutes">0</strong>Menit</div>
+        <div><strong id="seconds">0</strong>Detik</div>
+      </div>
+    </section>
+
+    <section class="content">
+      <h2>Our Special Day</h2>
+      <p>Informasi acara dan lokasi akan segera kami bagikan.</p>
+    </section>
+
+    <footer>
+      With Love,<br><br>
+      <strong>Naldi & Elsi</strong>
+    </footer>
+
+  </main>
+
+  <script>
+    function openInvitation() {
+      document.getElementById("invitation").style.display = "block";
+      document.getElementById("invitation").scrollIntoView({
+        behavior: "smooth"
+      });
+    }
+
+    function updateCountdown() {
+      const target = new Date("2028-02-16T00:00:00+08:00");
+      const now = new Date();
+      const diff = target - now;
+
+      if (diff <= 0) return;
+
+      document.getElementById("days").textContent =
+        Math.floor(diff / 86400000);
+
+      document.getElementById("hours").textContent =
+        Math.floor((diff / 3600000) % 24);
+
+      document.getElementById("minutes").textContent =
+        Math.floor((diff / 60000) % 60);
+
+      document.getElementById("seconds").textContent =
+        Math.floor((diff / 1000) % 60);
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+  </script>
+
+</body>
+</html>
